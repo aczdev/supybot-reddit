@@ -65,43 +65,12 @@ class Reddit(callbacks.Plugin):
         reddit = praw.Reddit(user_agent=user_agent)
         sub = reddit.get_subreddit(subreddit)
 
+        # If number of entries is not specified, go for a single entry
         if not n:
             n = 1
-        #    try:
-        #        n = int(period) 
-        #    except (TypeError, ValueError):
-        #        n = 3
-        #if not period:
-        #    period='day'
 
         irc.reply('subreddit=%s, status=%s, period=%s, n=%s' % \
                             (type(subreddit), type(status), type(period), type(n)))
-
-        #if int(n) > 10:
-        #    irc.reply('%d? Do not go so crazy, man!' % n)
-        #    return None
-
-        #try:
-        #    if int(n):
-        #        n = n
-        #except (TypeError, ValueError):
-        #    try:
-        #        irc.reply('Looking for an int in period!')
-        #        if int(period):
-        #            n = period
-        #            period = 'day'
-        #    except (TypeError, ValueError):
-        #        try:
-        #            irc.reply('Looking for an int in status')
-        #            if int(status):
-        #                n = status
-        #                status = 'top'
-        #                period = 'day'
-        #        except (TypeError, ValueError):
-        #            irc.reply('No ints? Go default way!')
-        #            n = 1
-        #            period = 'day'
-        #            status = 'top'
 
         try:
             if status == 'hot':
@@ -144,7 +113,4 @@ class Reddit(callbacks.Plugin):
             return None
     r = wrap(r, ['somethingWithoutSpaces', 'somethingWithoutSpaces', 'somethingWithoutSpaces', optional('int')])
 
-
 Class = Reddit
-
-
